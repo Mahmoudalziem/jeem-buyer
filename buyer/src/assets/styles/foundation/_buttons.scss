@@ -1,0 +1,16 @@
+.btn {
+    padding: 8px 70px;
+    font-size: 17px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-align: center;
+    background: $brown;
+    color: #fff;
+    margin: 15px auto;
+    transition: all 0.5s ease 0s;
+    opacity: 1;
+    &:hover {
+        background: #fff;
+        color: $brown;
+    }
+}

@@ -1,0 +1,10 @@
+.category {
+    .category-header {
+        font-weight: 500;
+        text-align: left;
+        padding-bottom: 30px;
+        .rtl & {
+            text-align: right;
+        }
+    }
+}

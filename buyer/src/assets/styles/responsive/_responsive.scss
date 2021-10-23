@@ -1,0 +1,165 @@
+@media (max-width: 991px) {
+    .navbar {
+        &.fixed-top {
+            z-index: 1;
+        }
+        .navbar-brand-wrapper {
+            .brand-logo {
+                display: none;
+            }
+            .brand-logo-mini {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all .25s ease-out;
+        -o-transition: all .25s ease-out;
+        transition: all .25s ease-out;
+        &.row-offcanvas-right {
+            right: 0;
+             ::ng-deep .sidebar-offcanvas {
+                right: -100%; // 12 columns
+            }
+            &.active {
+                right: calc(50% + 30px); // 6 columns
+                 ::ng-deep .sidebar-offcanvas {
+                    right: calc(-50% - 15px); // 6 columns
+                }
+            }
+        }
+        &.row-offcanvas-left {
+            left: 0;
+             ::ng-deep .sidebar-offcanvas {
+                left: -100%; // 12 columns
+            }
+            &.active {
+                left: 50%; // 6 columns
+                 ::ng-deep .sidebar-offcanvas {
+                    left: -50%; // 6 columns
+                }
+            }
+        }
+         ::ng-deep .sidebar-offcanvas {
+            position: absolute;
+            top: 0;
+            width: calc( 50% + 30px); // 6 columns
+        }
+    }
+}
+
+@media(min-width: 576px) and (max-width:768px) {
+    .burger-menu {
+        display: block;
+    }
+    .header-parent {
+        .header-one {
+            margin-top: 10px;
+        }
+        .header-three {
+            margin-top: -60px;
+        }
+        .header-two {
+            transition: all .3s ease-in-out;
+            transform: translateY(-200px);
+            &.active {
+                transform: translateY(0px);
+            }
+            .nav-container {
+                position: absolute;
+                top: 10px;
+                border-top: 1px solid $brown;
+                border-radius: 0;
+            }
+        }
+    }
+    .container {
+        max-width: 660px;
+    }
+}
+
+@media(max-width:576px) {
+    .header-parent {
+        .header-one {
+            margin-top: 10px;
+        }
+        .header-three {
+            margin-top: -60px;
+            .dropdown {
+                button {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .header-two {
+            transition: all .3s ease-in-out;
+            transform: translateY(-200px);
+            &.active {
+                transform: translateY(2px);
+            }
+            .nav-container {
+                position: absolute;
+                top: 8px;
+                border-top: 1px solid $brown;
+                border-radius: 0;
+            }
+        }
+    }
+    .carousel-body-left {
+        font-size: 25px !important;
+        padding: 0 54px !important;
+    }
+    .image_logo {
+        text-align: center !important;
+        img {
+            text-align: center;
+        }
+        h5 {
+            text-align: center !important;
+        }
+    }
+    .auth-container {
+        .body {
+            height: 300px !important;
+        }
+    }
+}
+
+@mixin media($breakpoint) {
+    @if $breakpoint==phone-sm {
+        @media only screen and (max-width: 360px) {
+            @content;
+        }
+    }
+    @if $breakpoint==phone-lg {
+        @media only screen and (max-width: 480px) {
+            @content;
+        }
+    }
+    @if $breakpoint==tablet-sm {
+        @media only screen and (max-width: 768px) {
+            @content;
+        }
+    }
+    @if $breakpoint==tablet-lg {
+        @media only screen and (max-width: 1024px) {
+            @content;
+        }
+    }
+    @if $breakpoint==desktop-sm {
+        @media only screen and (max-width: 1280px) {
+            @content;
+        }
+    }
+    @if $breakpoint==desktop-lg {
+        @media only screen and (max-width: 1920px) {
+            @content;
+        }
+    }
+}

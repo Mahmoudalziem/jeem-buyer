@@ -1,0 +1,246 @@
+/* Reset Styles */
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.form-control,
+.form-control:focus {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control {
+    box-shadow: none
+}
+
+.form-control:focus {
+    outline: 0;
+    box-shadow: none
+}
+
+a,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span {
+    text-shadow: none;
+    text-decoration: none;
+}
+
+[type=button]:focus,
+a:active,
+a:focus,
+a:visited,
+button::-moz-focus-inner,
+input[type=reset]::-moz-focus-inner,
+input[type=button]::-moz-focus-inner,
+input[type=submit]::-moz-focus-inner,
+input[type=file]>input[type=button]::-moz-focus-inner,
+select::-moz-focus-inner {
+    outline: 0
+}
+
+input,
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    outline-width: 0;
+    outline-color: transparent;
+    box-shadow: none;
+    outline-style: none;
+}
+
+textarea {
+    resize: none;
+    overflow-x: hidden;
+}
+
+.btn,
+.btn-group.open .dropdown-toggle,
+.btn:active,
+.btn:focus,
+.btn:hover,
+.btn:visited,
+a,
+a:active,
+a:checked,
+a:focus,
+a:hover,
+a:visited,
+body,
+button,
+button:active,
+button:hover,
+button:visited,
+div,
+input,
+input:active,
+input:focus,
+input:hover,
+input:visited,
+select,
+select:active,
+select:focus,
+select:visited,
+textarea,
+textarea:active,
+textarea:focus,
+textarea:hover,
+textarea:visited {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus,
+button,
+button:active,
+button:checked,
+button:focus,
+button:hover,
+button:visited {
+    outline: 0;
+    outline-offset: 0
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: 0;
+    outline-offset: 0
+}
+
+.dropdown-menu>li>a:active,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:visited {
+    outline: 0
+}
+
+a:focus,
+input:focus {
+    border-color: transparent;
+    outline: none
+}
+
+
+/* Forms */
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group-append,
+.input-group-prepend {
+    color: $input-placeholder-color;
+    width: auto;
+    border: none;
+    .input-group-text {
+        border-color: $border-color;
+        padding: 0.94rem 0.5rem 0.94rem 1rem;
+        color: $input-placeholder-color;
+    }
+    button {
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+    }
+}
+
+.custom-control {
+    .custom-control-label {
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+}
+
+.form-control {
+    border: 1px solid $border-color;
+    font-family: $type1;
+    .rtl & {
+        font-family: $type2;
+    }
+    font-size: $input-font-size;
+    font-weight: 400;
+    padding: 8px 12px;
+}
+
+select {
+    &.form-control {
+        padding: .4375rem .75rem;
+        border: 0;
+        outline: 1px solid $border-color;
+        color: $input-placeholder-color;
+        &:focus {
+            outline: 1px solid $border-color;
+        }
+        @each $color,
+        $value in $theme-colors {
+            &.border-#{$color} {
+                outline: 1px solid $value;
+                &:focus {
+                    outline: 1px solid $value;
+                }
+            }
+        }
+    }
+}
+
+.form-group {
+    label {
+        font-size: $default-font-size;
+        line-height: 1;
+        vertical-align: top;
+        margin-bottom: .5rem;
+    }
+    &.has-danger {
+        .form-control {
+            border-color: theme-color(danger);
+        }
+    }
+    .file-upload-default {
+        visibility: hidden;
+        position: absolute;
+    }
+    .file-upload-info {
+        background: transparent;
+    }
+}
+
+.form-check-input {
+    margin-left: 0;
+}
+
+.custom-file {
+    .visibility-hidden {
+        visibility: hidden;
+    }
+    .custom-file-label {
+        background: $input-bg;
+        ;
+        border: 1px solid $border-color;
+        height: calc(2.25rem + 2px);
+        font-weight: normal;
+        font-size: 0.875rem;
+        padding: 0.625rem 0.6875rem;
+        border-radius: 2px;
+        &:after {
+            background-color: theme-color(primary);
+            height: auto;
+            @extend .btn-primary;
+        }
+    }
+}

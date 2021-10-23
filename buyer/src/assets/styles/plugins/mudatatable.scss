@@ -1,0 +1,211 @@
+.MuiPaper-root {
+    .MuiPaper-rounded {
+        div {
+            h6 {
+                font-size: 14px;
+                font-weight: 600;
+            }
+        }
+        button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 1px solid $brown;
+            background: #fff;
+            justify-content: center;
+            cursor: pointer;
+            color: $brown;
+            outline: 0;
+            &:hover {
+                background: $brown;
+                color: #fff;
+            }
+        }
+    }
+    .MuiToolbar-root {
+        direction: ltr;
+        &>:first-child {
+            display: none;
+        }
+        &>:last-child {
+            text-align: center;
+            padding: 20px 0;
+            button,
+            &>span {
+                margin-left: 20px;
+            }
+        }
+    }
+    div {
+        .MuiChip-root {
+            margin: 8px 8px 8px 0px;
+        }
+        .rtl & {
+            direction: ltr;
+        }
+        .ant-select-selection-item {
+            .rtl & {
+                font-family: $type2;
+            }
+        }
+    }
+    table {
+        .rtl & {
+            direction: rtl;
+        }
+        thead {
+            tr {
+                th {
+                    padding: 8px;
+                    font-size: 14px;
+                    border: 1px solid #fff;
+                    white-space: nowrap;
+                    background: $brown;
+                    span {
+                        justify-content: center;
+                        .MuiButton-root {
+                            color: #fff !important;
+                            .rtl & {
+                                font-family: $type2, sans-serif;
+                            }
+                            .MuiButton-label {
+                                &>div {
+                                    &>:first-child {
+                                        color: #fff;
+                                    }
+                                    &:last-child {
+                                        .MuiSvgIcon-root {
+                                            color: #fff !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        tbody {
+            tr {
+                td {
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 30px;
+                    text-align: center;
+                    align-content: center;
+                    white-space: nowrap;
+                    border: 1px solid #dee2e6;
+                    .rtl & {
+                        font-family: $type2;
+                    }
+                    .datatables-noprint {
+                        div {
+                            font-weight: 600;
+                            font-size: 14px;
+                            opacity: .8;
+                        }
+                    }
+                    &:first-child {
+                        text-align: left;
+                        padding-left: 10px;
+                    }
+                    button {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        margin-right: 8px;
+                        border: 1px solid $brown;
+                        background: #fff;
+                        justify-content: center;
+                        cursor: pointer;
+                        color: $brown;
+                        outline: 0;
+                        &:hover {
+                            background: $brown;
+                            color: #fff;
+                        }
+                        a {
+                            margin: 0;
+                            padding: 0;
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            text-align: center;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+                            align-self: center;
+                            line-height: 30px;
+                        }
+                        svg {
+                            position: absolute;
+                            font-size: 23px;
+                            text-align: center;
+                            top: 8px;
+                            left: 8px;
+                        }
+                    }
+                    .ant-input-group {
+                        button {
+                            line-height: 32px;
+                            height: 32px;
+                            svg {
+                                top: 4px;
+                            }
+                        }
+                        input {
+                            font-size: 13px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+        tfoot {
+            tr {
+                td {
+                    &>div {
+                        direction: ltr;
+                        justify-content: center;
+                        padding: 8px 10px;
+                        div {
+                            .MuiTablePagination-toolbar {
+                                .MuiTypography-root {
+                                    min-width: 250px;
+                                    text-align: center;
+                                    color: $brown;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                }
+                                .MuiTablePagination-selectRoot {
+                                    margin: 0;
+                                    height: 40px;
+                                    text-align: center;
+                                    background: $brown;
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    color: #fff;
+                                    svg {
+                                        color: #fff;
+                                    }
+                                }
+                                .MuiTablePagination-actions {
+                                    margin: 0;
+                                    button {
+                                        span {
+                                            svg {}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

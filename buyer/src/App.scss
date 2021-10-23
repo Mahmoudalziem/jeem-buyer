@@ -1,0 +1,119 @@
+@import "@fontsource/cairo";
+@import "@fontsource/roboto";
+
+/* === Plugin styles === */
+
+@import '~antd/dist/antd.css';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "./assets/styles/foundation/variables";
+@import 'react-toastify/dist/ReactToastify.min.css';
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+/* === Icon fonts === */
+
+@import "~@mdi/font/scss/materialdesignicons";
+@import "~flag-icon-css/sass/flag-icon";
+
+/* === Template mixins === */
+
+@import "./assets/styles/mixins/animation";
+@import "./assets/styles/mixins/display";
+@import "./assets/styles/mixins/badges";
+@import "./assets/styles/mixins/buttons";
+@import "./assets/styles/mixins/misc";
+@import "./assets/styles/mixins/color-functions";
+@import "./assets/styles/mixins/cards";
+@import "./assets/styles/mixins/blockqoute";
+@import "./assets/styles/mixins/popovers";
+@import "./assets/styles/mixins/tooltips";
+@import "./assets/styles/mixins/no-ui-slider";
+
+/* === Loader Stle === */
+
+// @import "./assets/styles/loaders/loaders";
+
+/* === responsive Stype === */
+
+@import "./assets/styles/responsive/responsive";
+
+/* === Foundation Styles === */
+
+@import "./assets/styles/foundation/accordions";
+@import "./assets/styles/foundation/antdlayout";
+@import "./assets/styles/foundation/background";
+@import "./assets/styles/foundation/badges";
+@import "./assets/styles/foundation/bootstrap-alerts";
+@import "./assets/styles/foundation/bootstrap-progress";
+// @import "./assets/styles/foundation/breadcrumbs";
+@import "./assets/styles/foundation/cards";
+@import "./assets/styles/foundation/checkbox-radio";
+// @import "./assets/styles/foundation/datatable";
+@import "./assets/styles/foundation/default";
+@import "./assets/styles/foundation/dropdowns";
+@import "./assets/styles/foundation/forms";
+@import "./assets/styles/foundation/icons";
+@import "./assets/styles/foundation/landing";
+@import "./assets/styles/foundation/lists";
+@import "./assets/styles/foundation/misc";
+@import "./assets/styles/foundation/pagination";
+@import "./assets/styles/foundation/popovers";
+@import "./assets/styles/foundation/product-tile";
+@import "./assets/styles/foundation/spinner";
+@import "./assets/styles/foundation/tables";
+@import "./assets/styles/foundation/tabs";
+@import "./assets/styles/foundation/timeline";
+// @import "./assets/styles/foundation/typography";
+@import "./assets/styles/foundation/utilities";
+@import "./assets/styles/foundation/demo";
+// @import "./assets/styles/foundation/kanban";
+@import "./assets/styles/foundation/portfolio";
+@import "./assets/styles/foundation/preview";
+@import "./assets/styles/foundation/user-listing";
+@import "./assets/styles/foundation/user-profile";
+@import "./assets/styles/foundation/buttons";
+@import "./assets/styles/foundation/text";
+
+/* === Components === */
+
+//// Dashboard
+@import './assets/styles/components/dashboard/dashboard';
+////// Prdoucts
+@import './assets/styles/components/seller/products/product';
+@import './assets/styles/components/seller/profile';
+@import './assets/styles/components/seller/products/addEdit';
+@import './assets/styles/components/seller/products/show';
+///buyer
+@import './assets/styles/components/buyer/profile';
+///// Invoice
+@import './assets/styles/components/seller/invoice/invoice';
+///// Home
+@import './assets/styles/components/home/home';
+/// Login
+@import './assets/styles/components/login/login';
+/// Login
+@import './assets/styles/components/categories/categories';
+// cart
+@import './assets/styles/components/cart/cart';
+// Privacy
+@import './assets/styles/components/privacy/privacy';
+// sales
+@import './assets/styles/components/seller/sales/sales';
+
+/* === Plugin Overrides === */
+
+@import "./assets/styles/plugins/mudatatable";
+@import "./assets/styles/plugins/antd";
+@import "./assets/styles/plugins/react-toastify";
+@import "./assets/styles/plugins/react-slick";
+
+/* === Layout === */
+
+@import './assets/styles/layouts/navbar/navbar';
+@import './assets/styles/layouts/header/header';
+@import './assets/styles/layouts/sidebar/sidebar';
+@import './assets/styles/layouts/sidebar/layout';
+@import './assets/styles/layouts/footer/footer';
+// @import './assets/styles/layouts/sidebar/settings-panel';
+// @import './assets/styles/layouts/sidebar/settings-panel';

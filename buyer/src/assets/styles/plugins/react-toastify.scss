@@ -1,0 +1,18 @@
+.Toastify {
+    .Toastify__toast-container {
+        top: 4em;
+    }
+    .Toastify__toast {
+        .Toastify__toast-body {
+            font-family: $type1;
+            font-weight: 600;
+            font-size: 14px;
+            .rtl & {
+                font-family: $type2 !important;
+            }
+        }
+        .rtl & {
+            direction: rtl;
+        }
+    }
+}

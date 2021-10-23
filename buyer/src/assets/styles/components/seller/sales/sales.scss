@@ -1,0 +1,78 @@
+.print {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+    height: 48px;
+}
+
+.MuiTabs-root {
+    .MuiTabs-scroller {
+        background: $brown;
+    }
+    .MuiTabs-flexContainer {
+        .rtl & {
+            direction: rtl !important;
+        }
+    }
+}
+
+.MuiTab-root {
+    font-family: $type1 !important;
+    text-transform: capitalize !important;
+    .rtl & {
+        font-family: $type2 !important;
+    }
+}
+
+.MuiTabs-indicator {
+    height: 5px !important;
+    background: #fff !important;
+}
+
+.info-print {
+    h3 {
+        line-height: 45px;
+    }
+    .row {
+        margin: 40px 0;
+        .form-group {
+            margin: 0;
+        }
+        .add_product,
+        .ant-select {
+            width: 100%;
+            border-radius: 0;
+        }
+        .column {
+            margin: auto;
+        }
+        .ant-upload {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            .ant-upload-btn {
+                padding: 0;
+                button {
+                    width: 100%;
+                    border-radius: 0;
+                    margin: 0;
+                }
+            }
+        }
+        .ant-upload-list {
+            .ant-btn {
+                border: 0;
+                width: 0;
+                min-width: auto;
+                min-height: auto;
+                margin: 0;
+                background: transparent;
+                span {
+                    line-height: none;
+                }
+            }
+        }
+    }
+}

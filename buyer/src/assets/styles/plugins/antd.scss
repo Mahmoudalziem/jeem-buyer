@@ -1,0 +1,208 @@
+.ant-popover-inner {
+    .ant-popover-inner-content {
+        direction: rtl;
+        font-family: 'Cairo', sans-serif;
+        .ant-popover-message {
+            &>.anticon {
+                left: 0;
+            }
+            .ant-popover-message-title {
+                direction: ltr;
+            }
+        }
+    }
+}
+
+.ant-modal-content {
+    .ant-modal-close {
+        .rtl & {
+            position: absolute;
+            top: 0;
+            right: 90%;
+        }
+    }
+    .ant-modal-body {
+        form {
+            textarea {
+                border: 1px solid $brown;
+                padding: 10px;
+                font-size: 13px;
+                font-weight: 500;
+                border-radius: 20px;
+            }
+            .ant-input-number {
+                border-radius: 20px !important;
+                width: 100%;
+                overflow: hidden;
+            }
+            .group-input {
+                input {
+                    font-size: 12px;
+                    position: relative;
+                    width: 100%;
+                    border: 1px solid $brown;
+                    padding: 7px 10px;
+                    padding-left: 20px;
+                    border-radius: 20px;
+                    font-weight: 500;
+                    height: 40px;
+                    outline: 0;
+                    .rtl & {
+                        text-align: right;
+                        padding-right: 30px;
+                    }
+                    &:focus {
+                        border: 0;
+                    }
+                }
+                .ant-picker {
+                    width: 100%;
+                    border: 0;
+                    outline: 0;
+                    // .ant-picker-input {
+                    //     input {}
+                    //     span:first-child {}
+                    //     span:last-child {}
+                    // }
+                    .ant-form-item-children-icon {
+                        top: 25px;
+                    }
+                }
+            }
+            .form-group {
+                input {
+                    font-size: 12px;
+                    position: relative;
+                    width: 100%;
+                    padding: 7px 10px;
+                    padding-left: 20px;
+                    border-radius: 20px;
+                    border-color: $brown;
+                    font-weight: 500;
+                    height: 40px;
+                    outline: 0;
+                    .rtl & {
+                        text-align: right;
+                        padding-right: 30px;
+                    }
+                    &:focus {
+                        border: 0;
+                    }
+                }
+            }
+        }
+        .meeting-content {
+            div {
+                text-align: center;
+                font-weight: 600;
+                font-size: 16px;
+                padding: 20px 0;
+            }
+            button {
+                border-radius: 20px;
+                font-size: 13px;
+                font-weight: 600;
+                margin-right: 8px;
+                border: 1px solid $brown;
+                background: #fff;
+                justify-content: center;
+                cursor: pointer;
+                color: $brown;
+                outline: 0;
+                &:hover {
+                    background: $brown;
+                    color: #fff;
+                }
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.ant-form-item-children-icon {
+    top: 17px !important;
+}
+
+.ant-form-item-explain-error {
+    div {
+        li {
+            font-size: 12px;
+            padding: 8px 0 0 10px;
+            color: red;
+            font-weight: 500;
+            .rtl & {
+                text-align: right;
+            }
+        }
+    }
+}
+
+.ant-select {
+    width: 100%;
+    outline: 0;
+    border: 1px solid $brown;
+    border-radius: 20px;
+    outline: 0;
+    overflow: hidden;
+    font-weight: 600;
+    font-size: 13px;
+    height: 40px;
+    .ant-select-selector {
+        border: 0 !important;
+        height: 40px !important;
+        padding: 4px 0 0 17px !important;
+        .rtl & {
+            .ant-select-selection-item,
+            .ant-select-selection-placeholder {
+                padding: 0 30px;
+            }
+        }
+    }
+    .rtl & {
+        text-align: right;
+    }
+}
+
+.ant-empty {
+    padding: 50px 0;
+}
+
+.ant-form-item-control-input-content {
+    textarea {
+        padding: 10px 35px !important;
+    }
+    .time-counter {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: $brown;
+        padding: 10px;
+        height: 50px;
+        line-height: 33px;
+        border-radius: 20px 0 0 20px;
+        color: #fff;
+    }
+    .send {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        height: 49px !important;
+        border-radius: 20px 0 0 20px;
+        padding: 5px 20px !important;
+    }
+}
+
+.ant-select-selection-overflow {
+    flex-wrap: nowrap !important;
+}
+
+.ant-select-selection-item {
+    padding: 0 10px;
+    .ant-select-selection-item-remove {
+        margin-top: -2px;
+        margin-right: 5px;
+    }
+}
