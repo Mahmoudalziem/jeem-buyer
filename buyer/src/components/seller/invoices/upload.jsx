@@ -16,13 +16,10 @@ const UploadFile = (props) => {
       return false;
     },
     onChange: (file) => {
-      const formData = new FormData();
       if (file.fileList[0]) {
-        formData.append("file", file.file);
         readXlsxFile(file.file).then((rows) => {
-          console.log(rows);
+          props.Import(file.file,rows);
         });
-        props.Import(formData);
       } else {
         return false;
       }
@@ -31,7 +28,7 @@ const UploadFile = (props) => {
   return (
     <>
       <Dragger {...UploadImages}>
-        <button className="btn">{t("IMPORT")}</button>
+        <button type="button" className="btn">{t("IMPORT")}</button>
       </Dragger>
     </>
   );

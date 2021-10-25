@@ -46,7 +46,7 @@ export const NewAddress = (props) => {
           okButtonProps={{
             htmlType: "submit",
             key: "submit",
-            sring:"ok",
+            string:"ok",
             form: "new-address",
           }}
         >

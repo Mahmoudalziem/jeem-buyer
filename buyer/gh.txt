@@ -1,12 +1,11 @@
 import React from "react";
 import { Modal } from "antd";
 import * as Yup from "yup";
-import { useTranslation } from "react-i18next";
 import { Formik } from "formik";
-import { Form as FormFormik, Input, FormItem, InputNumber } from "formik-antd";
+import { useTranslation } from "react-i18next";
+import { InputNumber, Form as FormFormik, Input, FormItem } from "formik-antd";
 
 const Models = (props) => {
-
   const { t } = useTranslation();
 
   const initialValues = {
@@ -29,28 +28,19 @@ const Models = (props) => {
       count: Yup.number().required(t("COUNT_REQUIRED")).positive().integer(),
     });
 
-    const submitForm = (values, { setSubmitting, resetForm }) => {
+  const submitForm = (values, { setSubmitting, resetForm }) => {
+    console.log(values);
 
-      setSubmitting(false);
-  
-      resetForm({});
-  
-      let newProducts = [...props.manualProduct];
-  
-      newProducts.push(values);
-  
-      props.product(newProducts);
-  
-      console.log(newProducts);
-      
-      setTimeout(() => {
+    setSubmitting(false);
 
-        props.onCancel();
+    resetForm({});
 
-      }, 15);
-  
-    };
+    props.Proudct(values);
 
+    // setTimeout(() => {
+    //   props.onCancel(false);
+    // }, 15);
+  };
 
   return (
     <div className="modal-container d-none">

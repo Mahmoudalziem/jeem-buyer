@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import UploadFile from "./upload";
 import AddProduct from "./modals";
 import {
@@ -12,8 +12,10 @@ import {
 import { Empty } from "antd";
 import { Formik } from "formik";
 import { useTranslation } from "react-i18next";
-import { Fetch,Create } from "../../common/actions";
+import { Fetch, Create } from "../../common/actions";
 import * as Yup from "yup";
+
+import ProductFile from "../../../assets/files/products.xlsx";
 
 const { Option } = Select;
 
@@ -21,9 +23,10 @@ const Print = (props) => {
   const [loading, isLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [manualProduct, setManualProduct] = useState([]);
+  const [rows, setRows] = useState([]);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     /// Fetch Products
@@ -34,15 +37,9 @@ const Print = (props) => {
     });
   }, []);
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  }
-
-
   const handleManualChange = (value) => {
     setManualProduct(value);
-    console.log(`selected ${value}`);
-  }
+  };
 
   const initialValues = {
     name: "",
@@ -65,46 +62,42 @@ const Print = (props) => {
     });
 
   const submitForm = (values, { setSubmitting, resetForm }) => {
-
     setSubmitting(false);
+
+    console.log(values);
 
     const formData = new FormData();
 
     Object.keys(values).forEach((key) => {
-      
+      console.log(values[key])
       formData.append(key, values[key]);
     });
 
-    if (products) {
+    if (manualProduct.length > 0) {
 
-      formData.append("products", products);
+      console.log(manualProduct);
 
+      formData.append("products", manualProduct);
     }
 
-    if(manualProduct.length > 0){
-
-      formData.append("manual_product", manualProduct);
-
-    }
-    if(file){
-
+    if (file) {
       formData.append("file", file);
     }
 
-    Create("manual_product", formData, "seller", true).then((res) => {
-
+    Create("manual_products", formData, "seller", true).then((res) => {
       if (res.status) {
-        
         isLoading(false);
 
         resetForm({});
       }
     });
-
-    console.log(formData);
   };
 
-  const ImportFile = (file) => {
+  const ImportFile = (file, data) => {
+    data.splice(0, 1);
+    const newRows = [...rows];
+    newRows.push(data);
+    setRows(newRows);
     setFile(file);
   };
 
@@ -198,7 +191,15 @@ const Print = (props) => {
                     <h3>
                       برجاء استعمال هذا الملف اذا ارادت المبيعات الخارجية{" "}
                     </h3>
-                    <Link type="button" target="_blank" download>{t("DOWNLOAD")}</Link>
+                    <Link
+                      type="button"
+                      target="_blank"
+                      className="btn"
+                      to={ProductFile}
+                      download
+                    >
+                      {t("DOWNLOAD")}
+                    </Link>
                   </div>
                   <div className="row">
                     <div className="col-md-4 col-12">
@@ -216,21 +217,15 @@ const Print = (props) => {
                       >
                         {t("ADD")} {t("PRODUCT")}
                       </button>
-                      <AddProduct
-                        visible={open}
-                        product={handleManualChange}
-                        onCancel={() => setOpen(false)}
-                        title={t("MESSAGE_SEND")}
-                      />
                     </div>
                     <div className="col-md-4 col-12 column">
                       <div className="form-group">
                         <Select
                           mode="multiple"
-                          style={{ width: '100%' }}
-                          onChange={handleChange}
-                          allowClear
-                          name="product"
+                          style={{ width: "100%" }}
+                          // onChange={handleChange}
+                          // allowClear
+                          name="productsID"
                           placeholder={t("PRODUCTS")}
                         >
                           {products.map((index, key) => {
@@ -266,6 +261,13 @@ const Print = (props) => {
             </FormFormik>
           )}
         </Formik>
+        <AddProduct
+          visible={open}
+          manualProduct={manualProduct}
+          product={handleManualChange}
+          onCancel={() => setOpen(false)}
+          title={`${t("ADD")} ${t("PRODUCT")}`}
+        />
       </div>
     </div>
   );
