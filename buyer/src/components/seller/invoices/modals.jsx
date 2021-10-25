@@ -40,8 +40,6 @@ const Models = (props) => {
       newProducts.push(values);
   
       props.product(newProducts);
-  
-      console.log(newProducts);
       
       setTimeout(() => {
 

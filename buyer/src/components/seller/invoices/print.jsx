@@ -69,15 +69,13 @@ const Print = (props) => {
     const formData = new FormData();
 
     Object.keys(values).forEach((key) => {
-      console.log(values[key])
-      formData.append(key, values[key]);
+      return key === "productsID"
+        ? formData.append(key, JSON.stringify(values[key]))
+        : formData.append(key, values[key]);
     });
 
     if (manualProduct.length > 0) {
-
-      console.log(manualProduct);
-
-      formData.append("products", manualProduct);
+      formData.append("products", JSON.stringify(manualProduct));
     }
 
     if (file) {
