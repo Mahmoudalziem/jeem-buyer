@@ -194,7 +194,8 @@ const Print = (props) => {
                 <div className="form-content text-center">
                   <div className="content mx-auto w-50">
                     <h3>
-                      برجاء استعمال هذا الملف اذا ارادت المبيعات الخارجية{" "}
+                    {t('MANUAL_DESCRI')}
+                      {" "}
                     </h3>
                     <Link
                       type="button"
@@ -290,7 +291,7 @@ const Print = (props) => {
                       </div>
                     </div>
                   ))}
-                  
+
                 </div>
               </div>
 
