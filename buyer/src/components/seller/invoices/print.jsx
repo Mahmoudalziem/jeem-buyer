@@ -37,7 +37,7 @@ const Print = (props) => {
         setProducts(res.data.data);
       }
     });
-  }, []);
+  }, []); 
 
   const handleManualChange = (value) => {
     setRowsObject(value);
@@ -77,7 +77,7 @@ const Print = (props) => {
 
     Object.keys(values).forEach((key) => {
       return key === "productsID"
-        ? formData.append(key, JSON.stringify(values[key]))
+        ? formData.append(key, JSON.stringify(rowsEnterObject))
         : formData.append(key, values[key]);
     });
 
