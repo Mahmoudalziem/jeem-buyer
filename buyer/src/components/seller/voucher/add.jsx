@@ -38,13 +38,13 @@ const Print = (props) => {
 
     console.log(values);
 
-    // Create("manual_products", values, "seller", true).then((res) => {
-    //   if (res.status) {
-    //     isLoading(false);
+    Create("voucher", values, "seller", true).then((res) => {
+      if (res.status) {
+        isLoading(false);
 
-    //     resetForm({});
-    //   }
-    // });
+        resetForm({});
+      }
+    });
   };
 
   return (

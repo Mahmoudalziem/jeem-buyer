@@ -24,6 +24,8 @@ const Print = (props) => {
   const [products, setProducts] = useState([]);
   const [manualProduct, setManualProduct] = useState([]);
   const [rows, setRows] = useState([]);
+  const [rowsObject, setRowsObject] = useState([]);
+  const [rowsEnterObject, setRowsEnterObject] = useState([]);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
   const { t } = useTranslation();
@@ -38,13 +40,17 @@ const Print = (props) => {
   }, []);
 
   const handleManualChange = (value) => {
-    const newRows = [...rows];
-    newRows.push(value)
-    setRows(newRows);
-    console.log(rows);
-    setManualProduct(value);    
+    setRowsObject(value);
+    setManualProduct(value);
   };
 
+  const handleChange = (value) => {
+    const newRows = [];
+    value.map((item, key) =>
+      newRows.push(products.find(({ id }) => item === id))
+    );
+    setRowsEnterObject(newRows);
+  };
   const initialValues = {
     name: "",
     tax: "",
@@ -67,9 +73,6 @@ const Print = (props) => {
 
   const submitForm = (values, { setSubmitting, resetForm }) => {
     setSubmitting(false);
-
-    console.log(values);
-
     const formData = new FormData();
 
     Object.keys(values).forEach((key) => {
@@ -90,7 +93,7 @@ const Print = (props) => {
       if (res.status) {
         isLoading(false);
 
-        resetForm({});
+        // resetForm({});
       }
     });
   };
@@ -225,7 +228,8 @@ const Print = (props) => {
                         <Select
                           mode="multiple"
                           style={{ width: "100%" }}
-                          // allowClear
+                          onChange={handleChange}
+                          allowClear
                           name="productsID"
                           placeholder={t("PRODUCTS")}
                         >
@@ -245,27 +249,48 @@ const Print = (props) => {
 
               <div className="information-details border-0 pt-0">
                 <div className="form-content row">
-                  {rows ? (
-                    rows.map((item, parent) => (
+                  {rowsObject.length > 0 ||
+                  rows.length > 0 ||
+                  rowsEnterObject.length > 0 ? (
+                    rowsObject.map((item, parent) => (
                       <div key={parent} className="col-md-3 col-12">
                         <div className="product-content">
-                          {/* {item.map((content, child) =>
-                            child === 0 ? (
-                              <div key={child} className="title">
-                                {content}
-                              </div>
-                            ) : child === 1 ? (
-                              <div key={child} className="subtitle">
-                                {content}
-                              </div>
-                            ) : null
-                          )} */}
+                          <div className="title">{item.title}</div>
+                          <div className="subtitle">{item.description}</div>
                         </div>
                       </div>
                     ))
                   ) : (
                     <Empty className="w-100" description="Not Found Products" />
                   )}
+
+                  {rows.map((item, parent) => (
+                    <div key={parent} className="col-md-3 col-12">
+                      <div className="product-content">
+                        {item.map((content, child) =>
+                          child === 0 ? (
+                            <div key={child} className="title">
+                              {content}
+                            </div>
+                          ) : child === 1 ? (
+                            <div key={child} className="subtitle">
+                              {content}
+                            </div>
+                          ) : null
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {rowsEnterObject.map((item, key) => (
+                    <div key={key} className="col-md-3 col-12">
+                      <div className="product-content">
+                        <div className="title">{item.title}</div>
+                        <div className="subtitle">{item.descri}</div>
+                      </div>
+                    </div>
+                  ))}
+                  
                 </div>
               </div>
 

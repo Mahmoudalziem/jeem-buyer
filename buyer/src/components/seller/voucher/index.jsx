@@ -12,75 +12,33 @@ const Sales = () => {
 
   const columns = [
     {
-      label: t("code"),
-      name: "code",
+      label: t("id"),
+      name: "id",
     },
     {
-      label: t("product.title"),
-      name: "product.title",
-    },
-    {
-      label: t("product.status"),
-      name: "status",
-    },
-    {
-      label: t("ADDRESS"),
-      name: "address.address",
-    },
-    {
-      label: t("CUSTOMER"),
-      name: "buyer.name",
+      label: t("Name"),
+      name: "name",
     },
     {
       label: t("product.price"),
       name: "price",
     },
     {
-      label: t("product.discount"),
-      name: "discount",
+      label: t("CHECK_NUMBER"),
+      name: "check",
     },
     {
-      label: t("product.count"),
-      name: "counts",
+      label: t("RECEIVER"),
+      name: "receiver",
     },
     {
-      label: t("Actions"),
-      name: "id",
-      options: {
-        filter: false,
-        empty: true,
-        // customBodyRender: (dataIndex, rowIndex) => {
-        //   return (
-        //     <Fragment>
-        //       <Tooltip title={t('MESSAGE_SEND')} placement="bottom">
-        //         <Button onClick={() => enterMessageVisible((rowIndex.rowIndex))}>
-        //           <PermPhoneMsgIcon />
-        //         </Button>
-        //         <SendMessage visible={visibleMessage[(rowIndex.rowIndex)]} onCancel={() => handleMessageCancel((rowIndex.rowIndex))} title={t('MESSAGE_SEND')} dataIndex={dataIndex} handlingProps={() => handlingMessageProps(rowIndex.rowIndex)}/>
-        //       </Tooltip>
-
-        //       <Tooltip title={t('MEETING_CREATE')} placement="bottom">
-        //         <Button onClick={() => enterMeetingVisible(rowIndex.rowIndex)}>
-        //           <VideocamIcon />
-        //         </Button>
-        //         <CreateMeeting visible={visibleMeeting[(rowIndex.rowIndex)]} onCancel={() => handleMeetingCancel(( rowIndex.rowIndex))} title={t('MEETING_CREATE')} dataIndex={dataIndex} handlingProps={() => handlingMeetingProps(rowIndex.rowIndex)}/>
-        //       </Tooltip>
-
-        //       {/* <Tooltip title="Let's Chat" placement="bottom">
-        //         <Button >
-        //           <ForumIcon />
-        //         </Button>
-        //       </Tooltip> */}
-
-        //     </Fragment>
-        //   );
-        // },
-      },
+      label: t("THAT_FOR"),
+      name: "for",
     },
   ];
 
   useEffect(() => {
-    Fetch("order").then((res) => {
+    Fetch("voucher").then((res) => {
       if (res.status) {
         setData(res.data);
         setLoading(true);
