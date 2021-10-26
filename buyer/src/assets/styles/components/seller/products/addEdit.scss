@@ -47,6 +47,21 @@
             .form-content {
                 box-shadow: 0px 30px 60px 0px rgba(0, 0, 0, 0.1);
                 padding: 40px;
+                .product-content {
+                    background: $brown;
+                    color: #fff;
+                    padding: 10px;
+                    text-align: center;
+                    font-weight: 600;
+                    border-radius: 20px;
+                    min-height: 120px;
+                    .title {
+                        font-size: 20px;
+                    }
+                    .subtitle {
+                        font-size: 14px;
+                    }
+                }
                 .upload__image-wrapper {
                     margin: 35px auto;
                     width: 100px;

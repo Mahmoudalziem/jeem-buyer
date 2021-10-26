@@ -63,6 +63,13 @@ const Editinvoice = lazy(() => import("../../invoices/editInvoice"));
 const Meeting = lazy(() => import("../../meetings/meetings"));
 
 
+/**
+ * This Route For Vouchers
+ */
+
+ const Voucher = lazy(() => import("../../voucher"));
+
+ const AddVoucher = lazy(() => import("../../voucher/add"));
 
 /**
  * This Route For Posts
@@ -190,6 +197,12 @@ const Router = () => {
         path="/dashboard/carousel/:slug/edit"
         component={Editinvoice}
       />
+
+      {/***** Voucher Router *****/}
+
+      <Route exact path="/dashboard/voucher" component={Voucher} />
+
+    <Route exact path="/dashboard/voucher/create" component={AddVoucher} />
 
       {/***** Meeting Router *****/}
 

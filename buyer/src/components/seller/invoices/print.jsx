@@ -38,7 +38,11 @@ const Print = (props) => {
   }, []);
 
   const handleManualChange = (value) => {
-    setManualProduct(value);
+    const newRows = [...rows];
+    newRows.push(value)
+    setRows(newRows);
+    console.log(rows);
+    setManualProduct(value);    
   };
 
   const initialValues = {
@@ -94,7 +98,7 @@ const Print = (props) => {
   const ImportFile = (file, data) => {
     data.splice(0, 1);
     const newRows = [...rows];
-    newRows.push(data);
+    data.map((item) => newRows.push(item));
     setRows(newRows);
     setFile(file);
   };
@@ -221,7 +225,6 @@ const Print = (props) => {
                         <Select
                           mode="multiple"
                           style={{ width: "100%" }}
-                          // onChange={handleChange}
                           // allowClear
                           name="productsID"
                           placeholder={t("PRODUCTS")}
@@ -241,8 +244,28 @@ const Print = (props) => {
               </div>
 
               <div className="information-details border-0 pt-0">
-                <div className="form-content">
-                  <Empty className="w-100" description="Not Found Products" />
+                <div className="form-content row">
+                  {rows ? (
+                    rows.map((item, parent) => (
+                      <div key={parent} className="col-md-3 col-12">
+                        <div className="product-content">
+                          {/* {item.map((content, child) =>
+                            child === 0 ? (
+                              <div key={child} className="title">
+                                {content}
+                              </div>
+                            ) : child === 1 ? (
+                              <div key={child} className="subtitle">
+                                {content}
+                              </div>
+                            ) : null
+                          )} */}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <Empty className="w-100" description="Not Found Products" />
+                  )}
                 </div>
               </div>
 
