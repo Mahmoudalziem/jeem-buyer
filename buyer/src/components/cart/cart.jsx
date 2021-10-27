@@ -22,9 +22,9 @@ const Cart = (props) => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [price, setPrice] = useState([]);
   const [addressInfo, setAddressInfo] = useState([]);
   const [newAddress, setNewAddress] = useState();
+  const [totalPrice,setTotalPrice] = useState(0);
   const [countOrder, setCountOrder] = useState(1);
   const [visibleAddress, setVisibleAddress] = useState(false);
   const { count } = useSelector((state) => state.buyer);
@@ -42,20 +42,15 @@ const Cart = (props) => {
       Update(`order`, {address : exit_address.id}, `${index}/status`, "buyer").then((res) => {
 
         const newData = [...cart];
-  
-        const newPrice = [...price];
+
   
         const item = newData.find(({ code }) => code === index);
   
-        const newItem = newPrice.find(({ code }) => code === index);
-  
         newData.splice(item, 1);
-  
-        newPrice.splice(newItem, 1);
+
   
         setCart(newData);
-  
-        setPrice(newPrice);
+
 
         dispatch({
           type : "UPDATECOUNT",
@@ -75,20 +70,14 @@ const Cart = (props) => {
 
       const newData = [...cart];
 
-      const newPrice = [...price];
-
       const item = newData.find(({ code }) => code === index);
-
-      const newItem = newPrice.find(({ code }) => code === index);
 
       newData.splice(item, 1);
 
-      newPrice.splice(newItem, 1);
-
       setCart(newData);
 
-      setPrice(newPrice);
-
+      setTotalPrice(totalPrice - item.price);
+      
       dispatch({
           type : "UPDATECOUNT",
           payload : {
@@ -98,18 +87,20 @@ const Cart = (props) => {
     });
   };
 
-  let priceSum = [];
+
 
   useEffect(() => {
 
     Fetch("cart", "buyer").then((res) => {
       if (res.status) {
-        setCart(res.data);
+        setCart(res.data.orders);
         let newProducts = [];
 
         let newPrice = [];
 
-        res.data.forEach((item) => {
+        setTotalPrice(res.data.totalPrice);
+
+        res.data.orders.forEach((item) => {
           newProducts.push({
             code: item.code,
             title: item.product.title,
@@ -122,8 +113,6 @@ const Cart = (props) => {
 
         setProducts(newProducts);
 
-        setPrice(newPrice);
-
         setLoading(true);
       }
     });
@@ -133,10 +122,6 @@ const Cart = (props) => {
         setAddressInfo(res.data);
       }
     });
-
-    price.forEach((item) => (
-      priceSum.push(item.price)
-    ))
 
   }, []);
 
@@ -363,9 +348,7 @@ const Cart = (props) => {
                         <p className="checkout-footer">
                           {t("ORDER_COST")}:{" "}
                           <span className="light-brown">
-                          {price.map((item, key) => {
-                              return item.price;
-                            })}
+                          {totalPrice}
                             .00 SAR
                           </span>
                         </p>
@@ -379,9 +362,7 @@ const Cart = (props) => {
                         <h2 className="total">
                           {t("TOTAL")}:{" "}
                           <span className="light-brown">
-                            {price.map((item, key) => {
-                              return item.price;
-                            })}
+                            {totalPrice}
                             .00 SAR
                           </span>
                         </h2>
