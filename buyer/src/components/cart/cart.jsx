@@ -61,7 +61,7 @@ const Cart = (props) => {
 
       });
 
-    }
+    } 
   };
 
   const cancelOrder = (index) => {
@@ -77,7 +77,7 @@ const Cart = (props) => {
       setCart(newData);
 
       setTotalPrice(totalPrice - item.price);
-      
+
       dispatch({
           type : "UPDATECOUNT",
           payload : {
@@ -188,6 +188,12 @@ const Cart = (props) => {
 
         setCart([]);
 
+        dispatch({
+          type : "UPDATECOUNT",
+          payload : {
+            count : 0
+          }
+        })
       })
     }
   }
