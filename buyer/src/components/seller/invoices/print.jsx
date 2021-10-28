@@ -37,7 +37,7 @@ const Print = (props) => {
         setProducts(res.data.data);
       }
     });
-  }, []); 
+  }, []);
 
   const handleManualChange = (value) => {
     setRowsObject(value);
@@ -73,6 +73,7 @@ const Print = (props) => {
 
   const submitForm = (values, { setSubmitting, resetForm }) => {
     setSubmitting(false);
+    isLoading(true);
     const formData = new FormData();
 
     Object.keys(values).forEach((key) => {
@@ -90,10 +91,13 @@ const Print = (props) => {
     }
 
     Create("manual_products", formData, "seller", true).then((res) => {
-      if (res.status) {
+      if (res && res.status) {
         isLoading(false);
-
-        // resetForm({});
+        setRows([]);
+        setManualProduct([]);
+        setRowsObject([]);
+        setRowsEnterObject([]);
+        resetForm({});
       }
     });
   };
@@ -193,10 +197,7 @@ const Print = (props) => {
               <div className="information-details info-print border-0 pt-0">
                 <div className="form-content text-center">
                   <div className="content mx-auto w-50">
-                    <h3>
-                    {t('MANUAL_DESCRI')}
-                      {" "}
-                    </h3>
+                    <h3>{t("MANUAL_DESCRI")} </h3>
                     <Link
                       type="button"
                       target="_blank"
@@ -291,7 +292,6 @@ const Print = (props) => {
                       </div>
                     </div>
                   ))}
-
                 </div>
               </div>
 

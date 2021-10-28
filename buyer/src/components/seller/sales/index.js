@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Typography, Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import Tabs from "../../common/tabs";
 import Table from "../../common/table";
@@ -32,11 +32,12 @@ TabPanel.propTypes = {
 const Sales = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([{ title: "Loading ..." }]);
+  const [inside, setInside] = useState([{ title: "Loading ..." }]);
+  const [outside, setOutside] = useState([{ title: "Loading ..." }]);
 
   const { t } = useTranslation();
 
-  const columns = [
+  const columnsInside = [
     {
       label: t("code"),
       name: "code",
@@ -44,10 +45,6 @@ const Sales = () => {
     {
       label: t("product.title"),
       name: "product.title",
-    },
-    {
-      label: t("product.status"),
-      name: "status",
     },
     {
       label: t("ADDRESS"),
@@ -69,42 +66,38 @@ const Sales = () => {
       label: t("product.count"),
       name: "counts",
     },
-    {
-      label: t("Actions"),
-      name: "id",
-      options: {
-        filter: false,
-        empty: true,
-        // customBodyRender: (dataIndex, rowIndex) => {
-        //   return (
-        //     <Fragment>
-        //       <Tooltip title={t('MESSAGE_SEND')} placement="bottom">
-        //         <Button onClick={() => enterMessageVisible((rowIndex.rowIndex))}>
-        //           <PermPhoneMsgIcon />
-        //         </Button>
-        //         <SendMessage visible={visibleMessage[(rowIndex.rowIndex)]} onCancel={() => handleMessageCancel((rowIndex.rowIndex))} title={t('MESSAGE_SEND')} dataIndex={dataIndex} handlingProps={() => handlingMessageProps(rowIndex.rowIndex)}/>
-        //       </Tooltip>
-
-        //       <Tooltip title={t('MEETING_CREATE')} placement="bottom">
-        //         <Button onClick={() => enterMeetingVisible(rowIndex.rowIndex)}>
-        //           <VideocamIcon />
-        //         </Button>
-        //         <CreateMeeting visible={visibleMeeting[(rowIndex.rowIndex)]} onCancel={() => handleMeetingCancel(( rowIndex.rowIndex))} title={t('MEETING_CREATE')} dataIndex={dataIndex} handlingProps={() => handlingMeetingProps(rowIndex.rowIndex)}/>
-        //       </Tooltip>
-
-        //       {/* <Tooltip title="Let's Chat" placement="bottom">
-        //         <Button >
-        //           <ForumIcon />
-        //         </Button>
-        //       </Tooltip> */}
-
-        //     </Fragment>
-        //   );
-        // },
-      },
-    },
   ];
 
+  const columnsOutside = [
+    {
+      label: t("code"),
+      name: "id",
+    },
+    {
+      label: t("product.title"),
+      name: "title",
+    },
+    {
+      label: t("ADDRESS"),
+      name: "buyer.address",
+    },
+    {
+      label: t("CUSTOMER"),
+      name: "buyer.name",
+    },
+    {
+      label: t("product.price"),
+      name: "price",
+    },
+    {
+      label: t("product.discount"),
+      name: "discount",
+    },
+    {
+      label: t("product.count"),
+      name: "count",
+    },
+  ];
   const tabs = [t("SALES_IN"), t("SALES_OUT")];
 
   const handleChange = (value) => {
@@ -112,12 +105,14 @@ const Sales = () => {
   };
 
   useEffect(() => {
-    Fetch("order").then((res) => {
+    Fetch("manual_products").then((res) => {
       if (res.status) {
-        setData(res.data);
+        setInside(res.data.inside);
+        setOutside(res.data.outside);
         setLoading(true);
       } else {
-        setData([]);
+        setInside([]);
+        setOutside([]);
         setLoading(true);
       }
     });
@@ -138,9 +133,9 @@ const Sales = () => {
           <TabPanel value={selectedTab} index={0}>
             <div className="products-table container">
               <Table
-                dataTable={data}
+                dataTable={inside}
                 table="order"
-                Columns={columns}
+                Columns={columnsInside}
                 options={{}}
               />
             </div>
@@ -148,9 +143,9 @@ const Sales = () => {
           <TabPanel value={selectedTab} index={1}>
             <div className="products-table container">
               <Table
-                dataTable={data}
+                dataTable={outside}
                 table="order"
-                Columns={columns}
+                Columns={columnsOutside}
                 options={{}}
               />
             </div>
