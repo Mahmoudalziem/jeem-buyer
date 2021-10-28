@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import UploadFile from "./upload";
 import AddProduct from "./modals";
@@ -16,6 +16,7 @@ import { Fetch, Create } from "../../common/actions";
 import * as Yup from "yup";
 
 import ProductFile from "../../../assets/files/products.xlsx";
+import PrintPDF from "./print_invoice";
 
 const { Option } = Select;
 
@@ -29,6 +30,8 @@ const Print = (props) => {
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
   const { t } = useTranslation();
+
+  const PrintPdf = useRef(null);
 
   useEffect(() => {
     /// Fetch Products
@@ -92,12 +95,18 @@ const Print = (props) => {
 
     Create("manual_products", formData, "seller", true).then((res) => {
       if (res && res.status) {
+        setTimeout(() => {
+          PrintPdf.current(values);
+          console.log(rows,rowsObject,rowsEnterObject);
+          // setRows([]);
+          // setManualProduct([]);
+          // setRowsObject([]);
+          // setRowsEnterObject([]);
+          // resetForm({});
+        }, 500);
         isLoading(false);
-        setRows([]);
-        setManualProduct([]);
-        setRowsObject([]);
-        setRowsEnterObject([]);
-        resetForm({});
+      } else {
+        isLoading(false);
       }
     });
   };
@@ -314,6 +323,12 @@ const Print = (props) => {
           product={handleManualChange}
           onCancel={() => setOpen(false)}
           title={`${t("ADD")} ${t("PRODUCT")}`}
+        />
+        <PrintPDF
+          PrintPdf={PrintPdf}
+          rows={rows}
+          rowsObject={rowsObject}
+          rowsEnterObject={rowsEnterObject}
         />
       </div>
     </div>

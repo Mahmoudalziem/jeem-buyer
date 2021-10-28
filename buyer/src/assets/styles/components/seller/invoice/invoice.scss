@@ -152,11 +152,13 @@
                                 th {
                                     padding: 8px;
                                     color: #fff;
-                                    text-align: center;
+                                    text-align: right;
+                                    letter-spacing: 0;
                                     border: 1px solid #fff;
                                     white-space: nowrap;
                                     background: $brown;
                                     font-weight: 600;
+                                    vertical-align: top;
                                     font-size: 14px;
                                 }
                             }
@@ -167,7 +169,7 @@
                                     font-weight: 500;
                                     font-size: 13px;
                                     line-height: 30px;
-                                    text-align: center;
+                                    text-align: right;
                                     align-content: center;
                                     white-space: nowrap;
                                     border: 1px solid #dee2e6;
