@@ -147,7 +147,9 @@ const Dashboard = () => {
                 </div>
                 <p className="text-muted mt-3 mb-0">
                   <i className="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>{" "}
-                  12 {t('ORDER_NUMBER')}{" "}
+                  {data.inside} {t('INSIDE')}{" "}
+                  <i className="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i>{" "}
+                  {data.outside} {t('OUTSIDE')}{" "}
                 </p>
               </div>
             </div>
