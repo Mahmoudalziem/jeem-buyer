@@ -31,14 +31,14 @@ const Index = (props) => {
         className="invoice"
         id="invoice"
         style={{
-          // position: "absolute",
+          position: "absolute",
           width: "210mm",
           minHeight: "100mm",
           marginLeft: "auto",
           marginRight: "auto",
           top: 0,
           left: 0,
-          // zIndex: -1,
+          zIndex: -1,
         }}
       >
         <div className="container">
@@ -106,14 +106,86 @@ const Index = (props) => {
                         </div>
                       </div>
 
-                      <div className="voucher-content">
+                      <div className="voucher-content mt-5">
                         <div className="container">
-                          <div className="row">
-                            <div className="col-3">12</div>
-                            <div className="col-6">34</div>
-                            <div className="col-3">34</div>
+                          <div className="voucher_row">
+                          <div className="voucher_right">
+                                وصلنا من السيد / السادة :
+                              </div>
+                            <div className="voucher_center">{data.name}</div>
+                            <div className="voucher_left">
+                                Received From Mr./Messrs
+                              </div>
                           </div>
                         </div>
+
+                        <div className="container">
+                          <div className="voucher_row">
+                          <div className="voucher_right">مبلغ وقدره</div>
+                          <div className="voucher_center w-75">{data.price}</div>
+                          <div className="voucher_left">the Sum Of</div>
+                          </div>
+                        </div>
+
+                        <div className="container">
+                          <div className="voucher_row">
+                          <div className="voucher_right">
+                                <div className="d-flex">
+                                  <div>
+                                    <span>نقدا</span>
+                                    <span></span>
+                                  </div>
+                                  <div>
+                                    <span>بموجب شيك رقم</span>
+                                    <span></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="voucher_center w-57">{data.check}</div>
+                              <div className="voucher_left">
+                                <div className="d-flex">
+                                  <div>
+                                    <span>Cache</span>
+                                    <span></span>
+                                  </div>
+                                  <div>
+                                    <span>Cheque No </span>
+                                    <span></span>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div className="container">
+                          <div className="voucher_row">
+                          <div className="voucher_right">وذلك عن :</div>
+                          <div className="voucher_center w-80">{data.for}</div>
+                          <div className="voucher_left">For :</div>
+                          </div>
+                        </div>
+
+
+                        <div className="container mt-5">
+                          <div className="row">
+                            <div className="col-3">
+                              <div className="voucher_right">التاريخ : {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}</div>
+                            </div>
+                            <div className="col-6 text-center">
+                              <div className="d-flex" style={{ flexDirection:"column",lineHeight:"35px" }}>
+                                <span>المستلم RECEIVER</span>
+                                <span>{data.receiver}</span>
+                              </div>
+                            </div>
+                            <div className="col-3">
+                              <div className="voucher_left">
+                                Date : {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
                       </div>
                     </div>
                   </div>
