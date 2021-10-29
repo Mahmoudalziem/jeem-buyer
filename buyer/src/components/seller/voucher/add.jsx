@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Form as FormFormik,
   SubmitButton,
@@ -10,11 +10,12 @@ import { Formik } from "formik";
 import { useTranslation } from "react-i18next";
 import { Create } from "../../common/actions";
 import * as Yup from "yup";
+import PrintPDF from "./print_invoice";
 
 const Print = (props) => {
   const [loading, isLoading] = useState(false);
   const { t } = useTranslation();
-
+  const PrintPdf = useRef(null);
   const initialValues = {
     name: "",
     price: "",
@@ -22,7 +23,7 @@ const Print = (props) => {
     for: "",
     receiver: "",
   };
- 
+
   const validateSchema = () =>
     Yup.object({
       name: Yup.string().required(t("NAME_REQUIRED")),
@@ -33,16 +34,15 @@ const Print = (props) => {
     });
 
   const submitForm = (values, { setSubmitting, resetForm }) => {
-
     setSubmitting(false);
-
-    console.log(values);
 
     Create("voucher", values, "seller", true).then((res) => {
       if (res.status) {
         isLoading(false);
-
-        resetForm({});
+        setTimeout(() => {
+          PrintPdf.current(values);
+          resetForm({});
+        }, 500);
       }
     });
   };
@@ -122,7 +122,6 @@ const Print = (props) => {
                       </div>
                     </div>
 
-
                     <div className="col-md-6 col-12">
                       <div className="form-group">
                         <label htmlFor="receiver">{t("RECEIVER")} *</label>
@@ -156,8 +155,6 @@ const Print = (props) => {
                         </FormItem>
                       </div>
                     </div>
-
-                 
                   </div>
                 </div>
               </div>
@@ -176,6 +173,7 @@ const Print = (props) => {
           )}
         </Formik>
       </div>
+      <PrintPDF PrintPdf={PrintPdf} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useRef } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import Tabs from "../../common/tabs";
@@ -6,7 +6,7 @@ import Table from "../../common/table";
 import { useTranslation } from "react-i18next";
 import { Fetch } from "../../common/actions";
 import Spinner from "../../layouts/spinner/spinner";
-
+import PrintPDF from "./print_invoice";
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
 
@@ -32,10 +32,21 @@ TabPanel.propTypes = {
 const Sales = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [inside, setInside] = useState([{ title: "Loading ..." }]);
-  const [outside, setOutside] = useState([{ title: "Loading ..." }]);
+  const [inside, setInside] = useState([]);
+  const [outside, setOutside] = useState([]);
+  const PrintPdf = useRef(null);
 
   const { t } = useTranslation();
+
+  const exportData = () => {
+    setTimeout(() => {
+      return inside.length > 0 || outside.length > 0
+      ? selectedTab
+        ? PrintPdf.current(selectedTab,outside)
+        : PrintPdf.current(selectedTab,inside)
+      : null;
+    },15);
+  };
 
   const columnsInside = [
     {
@@ -127,7 +138,9 @@ const Sales = () => {
               <Tabs tabs={tabs} handleChange={handleChange} />
             </Grid>
             <Grid item xs={4}>
-              <button className="btn print">{t("EXPORT")}</button>
+              <button className="btn print" onClick={exportData}>
+                {t("EXPORT")}
+              </button>
             </Grid>
           </Grid>
           <TabPanel value={selectedTab} index={0}>
@@ -151,6 +164,7 @@ const Sales = () => {
             </div>
           </TabPanel>
         </div>
+        <PrintPDF PrintPdf={PrintPdf} />
       </Fragment>
     );
   } else {

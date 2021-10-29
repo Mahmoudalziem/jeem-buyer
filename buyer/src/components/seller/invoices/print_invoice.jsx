@@ -7,19 +7,24 @@ import { useSelector } from "react-redux";
 
 const Index = (props) => {
   const [data, setData] = useState([]);
-  const [rows, setRows] = useState([]);
+  const [info, setInfo] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
   const { t } = useTranslation();
 
-  const { name, address, city, phone, image } = useSelector((s) => s.seller);
+  const { name, city, phone, image } = useSelector((s) => s.seller);
 
   const columns = [
     {
-      title: t("code"),
-      dataIndex: "code",
+      title: t("id"),
+      dataIndex: "id",
     },
     {
       title: t("product.title"),
-      dataIndex: "product",
+      dataIndex: "title",
+    },
+    {
+      title: t("PRODUCT_DESCRIPTION"),
+      dataIndex: "descri",
     },
     {
       title: t("product.count"),
@@ -29,19 +34,22 @@ const Index = (props) => {
       title: t("product.price"),
       dataIndex: "price",
     },
+    {
+      title: t("product.total"),
+      dataIndex: "total",
+    },
   ];
 
   useEffect(() => {
-    const newRows = [];
     props.PrintPdf.current = print;
-    props.rows.map((item, parent) =>
-      item.map((content, child) => console.log(content))
-    );
   }, []);
 
-  const print = (values) => {
-    setData(values);
-    console.log(props.rows, props.rowsObject, props.rowsEnterObject);
+  const print = (values, data) => {
+    setInfo(values);
+    setData(data);
+    let TotalPrice = 0;
+    data.map((item) => (TotalPrice += item.total));
+    setTotalPrice(TotalPrice);
     const input = document.getElementById("invoice");
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -76,14 +84,14 @@ const Index = (props) => {
                       <div className="company-logo">
                         <img src={image} alt="logo" />
                       </div>
-                      <div className="company-name text-right">
+                      <div className="company-name">
                         <div>
                           <span>{t("COMPANY_NAME")} : </span>
                           <span>{name}</span>
                         </div>
                         <div>
                           <span>{t("TAX_NUMBER")} : </span>
-                          <span>{data.tax}</span>
+                          <span>{info.tax}</span>
                         </div>
                         <div>
                           <span>{t("PHONE")} : </span>
@@ -100,11 +108,11 @@ const Index = (props) => {
                       <div className="invoice-buyer-info">
                         <div className="invoice-buyer">
                           <div>
-                            <span>{t("TO")} :</span> <span>{data.name}</span>
+                            <span>{t("TO")} :</span> <span>{info.name}</span>
                           </div>
                           <div>
                             <span>{t("ADDRESS")} :</span>{" "}
-                            <span>{data.address}</span>
+                            <span>{info.address}</span>
                           </div>
                         </div>
 
@@ -112,11 +120,11 @@ const Index = (props) => {
                           <ul>
                             <li>
                               <span>{t("INVOICE_DATA")} : </span>
-                              <span>{new Date().getFullYear()}</span>
+                              <span>{`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}</span>
                             </li>
                             <li>
                               <span>{t("INVOICE_NUMBER")} : </span>
-                              <span>{`JOD${new Date().getDate()}99`}</span>
+                              <span>{`JOD${new Date().getMilliseconds()}99`}</span>
                             </li>
                           </ul>
                         </div>
@@ -125,7 +133,7 @@ const Index = (props) => {
                       <div className="invoice-orders">
                         <Table
                           columns={columns}
-                          dataSource={[data]}
+                          dataSource={data}
                           pagination={false}
                         />
                       </div>
@@ -135,7 +143,6 @@ const Index = (props) => {
                       <div
                         className="total"
                         style={{
-                          textAlign: "right",
                           background: "#94664b",
                           padding: "20px",
                           lineHeight: "25px",
@@ -146,15 +153,15 @@ const Index = (props) => {
                       >
                         <div>
                           <span>{t("product.total")} : </span>
-                          <span>{data.price} ASR</span>
+                          <span>{totalPrice} ASR</span>
                         </div>
                         <div>
                           <span>{t("product.paied")} : </span>
-                          <span>{data.price} ASR</span>
+                          <span>0.00 ASR</span>
                         </div>
                         <div>
                           <span>{t("product.price_due")} : </span>
-                          <span>{data.price} ASR</span>
+                          <span>{totalPrice} ASR</span>
                         </div>
                       </div>
                     </div>

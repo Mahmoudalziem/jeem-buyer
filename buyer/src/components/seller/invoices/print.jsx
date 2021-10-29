@@ -96,13 +96,12 @@ const Print = (props) => {
     Create("manual_products", formData, "seller", true).then((res) => {
       if (res && res.status) {
         setTimeout(() => {
-          PrintPdf.current(values);
-          console.log(rows,rowsObject,rowsEnterObject);
-          // setRows([]);
-          // setManualProduct([]);
-          // setRowsObject([]);
-          // setRowsEnterObject([]);
-          // resetForm({});
+          PrintPdf.current(values,res.data);
+          setRows([]);
+          setManualProduct([]);
+          setRowsObject([]);
+          setRowsEnterObject([]);
+          resetForm({});
         }, 500);
         isLoading(false);
       } else {
@@ -311,7 +310,7 @@ const Print = (props) => {
                   loading={loading}
                   disabled={false}
                 >
-                  حفظ وطباعة
+                  {t('SAVE_PRINT')}
                 </SubmitButton>
               </div>
             </FormFormik>
@@ -326,9 +325,6 @@ const Print = (props) => {
         />
         <PrintPDF
           PrintPdf={PrintPdf}
-          rows={rows}
-          rowsObject={rowsObject}
-          rowsEnterObject={rowsEnterObject}
         />
       </div>
     </div>

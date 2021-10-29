@@ -1,0 +1,43 @@
+.invoice-content {
+    .invoice-buyer-info {
+        .container-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .price-content {
+                justify-content: space-around;
+                width: 120px;
+                div {
+                    margin-top: 10px;
+                    span:first-child {}
+                    span:last-child {
+                        width: 50px;
+                        height: 30px;
+                        border: 2px solid #000;
+                        display: inherit;
+                        margin-top: 5px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+            .receipt-content {
+                span:first-child {
+                    font-size: 21px;
+                }
+                span:last-child {
+                    display: inherit;
+                    margin-top: 5px;
+                    border-width: 0 0 4px 0;
+                    border-color: #000;
+                    border-style: solid;
+                    margin: 10px 45px;
+                }
+            }
+            .number-content {
+                font-size: 20px;
+                color: red;
+                font-style: italic;
+            }
+        }
+    }
+}
