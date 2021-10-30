@@ -157,7 +157,7 @@ const Sales = () => {
             <div className="products-table container">
               <Table
                 dataTable={outside}
-                table="manual_product"
+                table="manual_products"
                 Columns={columnsOutside}
                 options={{}}
               />
