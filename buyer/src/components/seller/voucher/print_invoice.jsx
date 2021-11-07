@@ -17,11 +17,11 @@ const Index = (props) => {
   const print = (data) => {
     setData(data);
     const input = document.getElementById("invoice");
-    html2canvas(input).then((canvas) => {
+    html2canvas(input,, {useCORS: true}).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       pdf.addImage(imgData, "JPEG", 0, 0);
-      pdf.save("invoice.pdf");
+      pdf.save("voucher.pdf");
     });
   };
   return (
