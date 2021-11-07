@@ -52,7 +52,7 @@ const Sales = () => {
   if (loading) {
     return (
       <div className="products-table container">
-        <Table dataTable={data} table="order" Columns={columns} options={{}} />
+        <Table dataTable={data} table="voucher" Columns={columns} options={{}} />
       </div>
     );
   } else {

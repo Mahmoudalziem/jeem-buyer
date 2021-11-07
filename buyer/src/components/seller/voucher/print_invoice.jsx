@@ -16,7 +16,6 @@ const Index = (props) => {
 
   const print = (data) => {
     setData(data);
-    console.log(data);
     const input = document.getElementById("invoice");
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");

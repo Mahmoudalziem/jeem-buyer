@@ -157,12 +157,10 @@
                                     padding: 8px;
                                     color: #fff;
                                     text-align: center;
-                                    letter-spacing: 0;
                                     border: 1px solid #fff;
-                                    white-space: nowrap;
+                                    direction: rtl;
                                     background: $brown;
                                     font-weight: 600;
-                                    vertical-align: top;
                                     font-size: 14px;
                                 }
                             }
@@ -175,7 +173,7 @@
                                     line-height: 30px;
                                     text-align: center;
                                     align-content: center;
-                                    white-space: nowrap;
+                                    direction: rtl;
                                     border: 1px solid #dee2e6;
                                 }
                             }
