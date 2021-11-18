@@ -52,8 +52,10 @@ const Index = (props) => {
     setTotalPrice(TotalPrice);
     const input = document.getElementById("invoice");
     html2canvas(input, {
+      logging: true,
       letterRendering: 1,
-      allowTaint: true
+      allowTaint: false,
+      useCORS: true,
     }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();

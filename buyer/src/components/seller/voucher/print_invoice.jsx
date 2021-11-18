@@ -18,8 +18,10 @@ const Index = (props) => {
     setData(data);
     const input = document.getElementById("invoice");
     html2canvas(input, {
+      logging: true,
       letterRendering: 1,
-      allowTaint: true
+      allowTaint: false,
+      useCORS: true,
     }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
@@ -111,83 +113,96 @@ const Index = (props) => {
                       <div className="voucher-content mt-5">
                         <div className="container">
                           <div className="voucher_row">
-                          <div className="voucher_right">
-                                وصلنا من السيد / السادة :
-                              </div>
+                            <div className="voucher_right">
+                              وصلنا من السيد / السادة :
+                            </div>
                             <div className="voucher_center">{data.name}</div>
                             <div className="voucher_left">
-                                Received From Mr./Messrs
-                              </div>
+                              Received From Mr./Messrs
+                            </div>
                           </div>
                         </div>
 
                         <div className="container">
                           <div className="voucher_row">
-                          <div className="voucher_right">مبلغ وقدره</div>
-                          <div className="voucher_center w-75">{data.price}</div>
-                          <div className="voucher_left">the Sum Of</div>
+                            <div className="voucher_right">مبلغ وقدره</div>
+                            <div className="voucher_center w-75">
+                              {data.price}
+                            </div>
+                            <div className="voucher_left">the Sum Of</div>
                           </div>
                         </div>
 
                         <div className="container">
                           <div className="voucher_row">
-                          <div className="voucher_right">
-                                <div className="d-flex">
-                                  <div>
-                                    <span>نقدا</span>
-                                    <span></span>
-                                  </div>
-                                  <div>
-                                    <span>بموجب شيك رقم</span>
-                                    <span></span>
-                                  </div>
+                            <div className="voucher_right">
+                              <div className="d-flex">
+                                <div>
+                                  <span>نقدا</span>
+                                  <span></span>
+                                </div>
+                                <div>
+                                  <span>بموجب شيك رقم</span>
+                                  <span></span>
                                 </div>
                               </div>
-                              <div className="voucher_center w-57">{data.check}</div>
-                              <div className="voucher_left">
-                                <div className="d-flex">
-                                  <div>
-                                    <span>Cache</span>
-                                    <span></span>
-                                  </div>
-                                  <div>
-                                    <span>Cheque No </span>
-                                    <span></span>
-                                  </div>
+                            </div>
+                            <div className="voucher_center w-57">
+                              {data.check}
+                            </div>
+                            <div className="voucher_left">
+                              <div className="d-flex">
+                                <div>
+                                  <span>Cache</span>
+                                  <span></span>
+                                </div>
+                                <div>
+                                  <span>Cheque No </span>
+                                  <span></span>
                                 </div>
                               </div>
+                            </div>
                           </div>
                         </div>
 
                         <div className="container">
                           <div className="voucher_row">
-                          <div className="voucher_right">وذلك عن :</div>
-                          <div className="voucher_center w-80">{data.for}</div>
-                          <div className="voucher_left">For :</div>
+                            <div className="voucher_right">وذلك عن :</div>
+                            <div className="voucher_center w-80">
+                              {data.for}
+                            </div>
+                            <div className="voucher_left">For :</div>
                           </div>
                         </div>
-
 
                         <div className="container mt-5">
                           <div className="row">
                             <div className="col-3">
-                              <div className="voucher_right">التاريخ : {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}</div>
+                              <div className="voucher_right">
+                                التاريخ :{" "}
+                                {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}
+                              </div>
                             </div>
                             <div className="col-6 text-center">
-                              <div className="d-flex" style={{ flexDirection:"column",lineHeight:"35px" }}>
+                              <div
+                                className="d-flex"
+                                style={{
+                                  flexDirection: "column",
+                                  lineHeight: "35px",
+                                }}
+                              >
                                 <span>المستلم RECEIVER</span>
                                 <span>{data.receiver}</span>
                               </div>
                             </div>
                             <div className="col-3">
                               <div className="voucher_left">
-                                Date : {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}
+                                Date :{" "}
+                                {`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}
                               </div>
                             </div>
                           </div>
                         </div>
-
-
                       </div>
                     </div>
                   </div>
