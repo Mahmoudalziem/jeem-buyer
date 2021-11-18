@@ -51,12 +51,15 @@ const Index = (props) => {
     data.map((item) => (TotalPrice += item.total));
     setTotalPrice(TotalPrice);
     const input = document.getElementById("invoice");
-    html2canvas(input,{letterRendering:1,allowTaint: true,onrendered : (canvas) => {
+    html2canvas(input, {
+      letterRendering: 1,
+      allowTaint: true
+    }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       pdf.addImage(imgData, "JPEG", 0, 0);
       pdf.save("invoice.pdf");
-    }});
+    });
   };
   return (
     <Fragment>

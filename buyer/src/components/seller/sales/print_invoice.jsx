@@ -104,12 +104,15 @@ const Index = (props) => {
       ]);
     }
     const input = document.getElementById("invoice");
-    html2canvas(input,{letterRendering:1,allowTaint: true,onrendered : (canvas) => {
+    html2canvas(input, {
+      letterRendering: 1,
+      allowTaint: true
+    }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
       pdf.addImage(imgData, "JPEG", 0, 0);
       pdf.save("sales.pdf");
-    }});
+    });
   };
   return (
     <Fragment>
@@ -127,57 +130,57 @@ const Index = (props) => {
           zIndex: -1,
         }}
       >
-          <div className="row">
-            {data ? (
-              <div className="col-12">
-                <div className="invoice-content">
-                  <div className="invoice-details">
-                    <div className="invoice-top d-flex">
-                      <div className="company-logo">
-                        <img src={image} alt="logo" />
+        <div className="row">
+          {data ? (
+            <div className="col-12">
+              <div className="invoice-content">
+                <div className="invoice-details">
+                  <div className="invoice-top d-flex">
+                    <div className="company-logo">
+                      <img src={image} alt="logo" />
+                    </div>
+                    <div className="company-name">
+                      <div>
+                        <span>{t("COMPANY_NAME")} : </span>
+                        <span>{name}</span>
                       </div>
-                      <div className="company-name">
-                        <div>
-                          <span>{t("COMPANY_NAME")} : </span>
-                          <span>{name}</span>
-                        </div>
-                        <div>
-                          <span>{t("PHONE")} : </span>
-                          <span>{phone}</span>
-                        </div>
-                        <div>
-                          <span>{t("CITY")} : </span>
-                          <span>{city}</span>
-                        </div>
-                        <div>
-                          <span>{t("INVOICE_DATA")} : </span>
-                          <span>{`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}</span>
-                        </div>
-                        <div>
-                          <span>{t("INVOICE_NUMBER")} : </span>
-                          <span>{`JOD${new Date().getMilliseconds()}99`}</span>
-                        </div>
+                      <div>
+                        <span>{t("PHONE")} : </span>
+                        <span>{phone}</span>
+                      </div>
+                      <div>
+                        <span>{t("CITY")} : </span>
+                        <span>{city}</span>
+                      </div>
+                      <div>
+                        <span>{t("INVOICE_DATA")} : </span>
+                        <span>{`${new Date().getFullYear()}/${new Date().getMonth()}/${new Date().getDay()}`}</span>
+                      </div>
+                      <div>
+                        <span>{t("INVOICE_NUMBER")} : </span>
+                        <span>{`JOD${new Date().getMilliseconds()}99`}</span>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="invoice-bottom">
-                      <div className="invoice-orders">
-                        <Table
-                          columns={columns}
-                          dataSource={data}
-                          pagination={false}
-                        />
-                      </div>
+                  <div className="invoice-bottom">
+                    <div className="invoice-orders">
+                      <Table
+                        columns={columns}
+                        dataSource={data}
+                        pagination={false}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-            ) : (
-              <div className="col-12 p-5">
-                <Empty className="w-100" description="Not Found Orders" />
-              </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="col-12 p-5">
+              <Empty className="w-100" description="Not Found Orders" />
+            </div>
+          )}
+        </div>
       </div>
     </Fragment>
   );
