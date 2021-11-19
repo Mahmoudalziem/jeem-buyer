@@ -156,13 +156,14 @@
                                 th {
                                     padding: 8px;
                                     color: #fff;
-                                    text-align: right;
+                                    text-align: center;
                                     letter-spacing: normal;
                                     border: 1px solid #fff;
                                     direction: rtl;
                                     background: $brown;
                                     font-weight: 600;
                                     font-size: 14px;
+                                    white-space: normal;
                                 }
                             }
                         }

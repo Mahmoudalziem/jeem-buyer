@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Table, Empty } from "antd";
 import React, { Fragment, useEffect, useState } from "react";
-import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { useSelector } from "react-redux";
+import * as htmlToImage from "html-to-image";
 
 const Index = (props) => {
   const [data, setData] = useState([]);
@@ -104,15 +104,9 @@ const Index = (props) => {
       ]);
     }
     const input = document.getElementById("invoice");
-    html2canvas(input, {
-      logging: true,
-      letterRendering: 1,
-      allowTaint: false,
-      useCORS: true,
-    }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+    htmlToImage.toPng(input,{ cacheBust: true }).then((image) => {
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 0, 0);
+      pdf.addImage(image, "PNG", 0, 0);
       pdf.save("sales.pdf");
     });
   };
